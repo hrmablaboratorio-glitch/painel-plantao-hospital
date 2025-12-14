@@ -1,56 +1,32 @@
-const SHEET_URL = https://docs.google.com/spreadsheets/d/e/2PACX-1vTD3WXA_jwJMljuqVrk8U4UzqKkSRv5mDcov4f4idiw9EUB5KzUCdrFJLricaTNHgZltLh521gi4g1D/pubhtml;
+const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTD3WXA_jwJMljuqVrk8U4UzqKkSRv5mDcov4f4idiw9EUB5KzUCdrFJLricaTNHgZltLh521gi4g1D/pub?output=csv";
 
-function carregarDados() {
-  fetch(SHEET_URL)
-    .then(res => res.text())
-    .then(csv => {
-      const linhas = csv.split("\n").slice(1);
-      const tbody = document.querySelector("tbody");
-      tbody.innerHTML = "";
+fetch(sheetURL)
+  .then(response => response.text())
+  .then(csv => {
+    const linhas = csv.split("\n");
+    const tbody = document.querySelector("#escala tbody");
 
-      linhas.forEach(linha => {
-        if (!linha.trim()) return;
+    tbody.innerHTML = "";
 
-        const col = linha.split(",");
+    linhas.slice(1).forEach(linha => {
+      if (!linha.trim()) return;
 
-        const tr = document.createElement("tr");
+      const colunas = linha.split(",");
 
-        // Classe por cargo
-        const cargo = col[1]?.toLowerCase() || "";
-        if (cargo.includes("médico")) tr.classList.add("medico");
-        if (cargo.includes("anestesista")) tr.classList.add("anestesista");
-        if (cargo.includes("enfermeiro")) tr.classList.add("enfermeiro");
-        if (cargo.includes("técnico")) tr.classList.add("tecnico");
+      const tr = document.createElement("tr");
 
-        col.forEach(valor => {
-          const td = document.createElement("td");
-          td.textContent = valor;
-          tr.appendChild(td);
-        });
+      // Nome
+      tr.innerHTML = `
+        <td>${colunas[0]}</td>
+        <td>${colunas[1]}</td>
+        <td>${colunas[2]}</td>
+        <td>${colunas[3]}</td>
+        <td>${colunas[4]} - ${colunas[5]}</td>
+      `;
 
-        tbody.appendChild(tr);
-      });
+      tbody.appendChild(tr);
     });
-}
-
-// Data no cabeçalho
-function atualizarData() {
-  const agora = new Date();
-  const texto = agora.toLocaleDateString("pt-BR", {
-    weekday: "long",
-    day: "2-digit",
-    month: "long",
-    year: "numeric"
+  })
+  .catch(err => {
+    console.error("Erro ao carregar planilha:", err);
   });
-
-  document.querySelector(".data").textContent = texto;
-}
-
-carregarDados();
-atualizarData();
-
-// Atualiza automaticamente
-setInterval(() => {
-  carregarDados();
-  atualizarData();
-}, 300000); // 5 minutos
