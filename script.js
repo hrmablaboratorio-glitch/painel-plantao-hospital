@@ -1,5 +1,17 @@
 const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTD3WXA_jwJMljuqVrk8U4UzqKkSRv5mDcov4f4idiw9EUB5KzUCdrFJLricaTNHgZltLh521gi4g1D/pub?output=csv";
 
+function estaNoHorario(inicio, fim) {
+  const agora = new Date();
+  const [hi, mi] = inicio.split(":").map(Number);
+  const [hf, mf] = fim.split(":").map(Number);
+
+  const inicioMin = hi * 60 + mi;
+  const fimMin = hf * 60 + mf;
+  const agoraMin = agora.getHours() * 60 + agora.getMinutes();
+
+  return agoraMin >= inicioMin && agoraMin <= fimMin;
+}
+
 fetch(sheetURL)
   .then(res => res.text())
   .then(csv => {
