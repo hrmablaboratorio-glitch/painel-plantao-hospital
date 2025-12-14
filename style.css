@@ -81,3 +81,55 @@ footer {
   color: #555;
   margin-top: 15px;
 }
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6f8;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 18px;
+}
+
+th {
+  background: #1e293b;
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background: #f1f5f9;
+}
+
+/* cargos */
+.func-medico {
+  color: #1d4ed8;
+  font-weight: bold;
+}
+
+.func-anestesista {
+  color: #7c3aed;
+  font-weight: bold;
+}
+
+.func-enfermeiro {
+  color: #047857;
+  font-weight: bold;
+}
+
+.func-tecnico {
+  color: #92400e;
+}
+
+/* plantão atual */
+.plantao-atual {
+  background: #dcfce7 !important;
+  border-left: 6px solid #16a34a;
+}
