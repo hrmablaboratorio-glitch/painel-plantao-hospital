@@ -9,98 +9,76 @@ body {
   color: #222;
 }
 
-/* Cabeçalho */
-header {
+/* ===== TOPO ===== */
+.topo {
   background: linear-gradient(to right, #0a5aa3, #0d7acb);
-  color: #fff;
-  padding: 25px;
-  text-align: center;
+  color: white;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-header h1 {
+.topo-esquerda {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.topo h1 {
   margin: 0;
-  font-size: 42px;
+  font-size: 40px;
 }
 
-header .data {
-  margin-top: 8px;
-  font-size: 22px;
+.relogio {
+  font-size: 28px;
+  font-weight: bold;
+  font-family: "Courier New", monospace;
+  background: rgba(0,0,0,0.25);
+  padding: 6px 14px;
+  border-radius: 6px;
 }
 
-/* Área principal */
-main {
+/* ===== INFO ===== */
+.info {
+  padding: 15px 30px;
+  background: #ffffff;
+  font-size: 20px;
+  border-bottom: 2px solid #ccc;
+}
+
+/* ===== QUADROS ===== */
+.quadros {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
   padding: 20px;
 }
 
-/* Tabela */
-table {
-  width: 100%;
-  border-collapse: collapse;
+section {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+section h2 {
+  margin: 0;
+  padding: 14px;
+  background: #1e293b;
+  color: white;
   font-size: 26px;
 }
 
-thead th {
-  background-color: #005ea6;
-  color: #fff;
-  padding: 14px;
-  text-align: left;
-}
-
-tbody td {
-  padding: 14px;
-  border-bottom: 1px solid #ccc;
-}
-
-/* Linhas alternadas */
-tbody tr:nth-child(even) {
-  background-color: #e9f1f7;
-}
-
-/* Destaque por cargo */
-.medico {
-  font-weight: bold;
-}
-
-.anestesista {
-  color: #8b0000;
-  font-weight: bold;
-}
-
-.enfermeiro {
-  color: #005ea6;
-}
-
-.tecnico {
-  color: #333;
-}
-
-/* Rodapé */
-footer {
-  text-align: center;
-  font-size: 18px;
-  color: #555;
-  margin-top: 15px;
-}
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f4f6f8;
-}
-
+/* ===== TABELAS ===== */
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 18px;
-}
-
-th {
-  background: #1e293b;
-  color: white;
-  padding: 12px;
-  text-align: left;
+  font-size: 22px;
 }
 
 td {
-  padding: 10px;
+  padding: 12px;
   border-bottom: 1px solid #ddd;
 }
 
@@ -108,7 +86,7 @@ tr:nth-child(even) {
   background: #f1f5f9;
 }
 
-/* cargos */
+/* ===== CARGOS ===== */
 .func-medico {
   color: #1d4ed8;
   font-weight: bold;
@@ -128,32 +106,16 @@ tr:nth-child(even) {
   color: #92400e;
 }
 
-/* plantão atual */
+/* ===== PLANTÃO ATUAL ===== */
 .plantao-atual {
   background: #dcfce7 !important;
   border-left: 6px solid #16a34a;
 }
-.topo {
-  background: linear-gradient(to right, #0a5aa3, #0d7acb);
-  color: white;
-  padding: 15px 30px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
-.topo-esquerda {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+/* ===== RODAPÉ ===== */
+footer {
+  text-align: center;
+  font-size: 18px;
+  color: #555;
+  padding: 12px;
 }
-
-.relogio {
-  font-size: 26px;
-  font-weight: bold;
-  font-family: "Courier New", monospace;
-  background: rgba(0,0,0,0.25);
-  padding: 6px 12px;
-  border-radius: 6px;
-}
-
