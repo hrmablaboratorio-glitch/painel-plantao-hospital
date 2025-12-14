@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Escala de Plantões</title>
+<meta http-equiv="refresh" content="300">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f6f8;
+}
+
+header {
+    background: linear-gradient(to right, #0a5aa3, #0d7acb);
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+header span {
+    font-size: 18px;
+}
+
+.info {
+    padding: 15px 30px;
+    background: #ffffff;
+    font-size: 18px;
+    border-bottom: 2px solid #ccc;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 22px;
+    background: white;
+}
+
+th {
+    background-color: #e3eef9;
+    color: #003366;
+    text-align: left;
+    padding: 12px;
+    border-bottom: 2px solid #ccc;
+}
+
+td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.func-medico {
+    color: #0059b3;
+    font-weight: bold;
+}
+
+.func-anestesista {
+    color: #b34700;
+    font-weight: bold;
+}
+
+.func-tecnico {
+    color: #006633;
+}
+
+.func-enfermeiro {
+    color: #7a007a;
+    font-weight: bold;
+}
+
+footer {
+    padding: 10px;
+    text-align: center;
+    font-size: 18px;
+    background: #ffffff;
+    color: #333;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>ESCALA DE PLANTÕES</h1>
+    <span>Hospital Regional — SESAP/RN</span>
+</header>
+
+<div class="info">
+    <strong>Data:</strong> 14/12/2025 &nbsp;&nbsp; 
+    <strong>Unidade:</strong> Hospital Regional Monsenhor Antônio Barros
+</div>
+
+<table>
+<thead>
+<tr>
+    <th>Funcionário</th>
+    <th>Cargo</th>
+    <th>Especialidade</th>
+    <th>Plantão</th>
+    <th>Hora Inicial</th>
+    <th>Hora Final</th>
+</tr>
+</thead>
+
+<tbody>
+<!-- MÉDICOS -->
+<tr>
+    <td>Dr. Carlos Henrique Silva</td>
+    <td class="func-medico">Médico</td>
+    <td>Clínico Geral</td>
+    <td>Diurno</td>
+    <td>07:00</td>
+    <td>19:00</td>
+</tr>
+<tr>
+    <td>Dra. Mariana Lopes</td>
+    <td class="func-medico">Médica</td>
+    <td>Clínico Geral</td>
+    <td>Noturno</td>
+    <td>19:00</td>
+    <td>07:00</td>
+</tr>
+
+<!-- ANESTESISTAS -->
+<tr>
+    <td>Dr. Rafael Monteiro</td>
+    <td class="func-anestesista">Médico</td>
+    <td>Anestesista</td>
+    <td>Diurno</td>
+    <td>07:00</td>
+    <td>19:00</td>
+</tr>
+<tr>
+    <td>Dra. Paula Nogueira</td>
+    <td class="func-anestesista">Médica</td>
+    <td>Anestesista</td>
+    <td>Noturno</td>
+    <td>19:00</td>
+    <td>07:00</td>
+</tr>
+
+<!-- TÉCNICOS DE ENFERMAGEM -->
+<tr>
+    <td>João Batista Santos</td>
+    <td class="func-tecnico">Técnico de Enfermagem</td>
+    <td>—</td>
+    <td>Diurno</td>
+    <td>07:00</td>
+    <td>13:00</td>
+</tr>
+<tr>
+    <td>Maria Aparecida Lima</td>
+    <td class="func-tecnico">Técnica de Enfermagem</td>
+    <td>—</td>
+    <td>Diurno</td>
+    <td>13:00</td>
+    <td>19:00</td>
+</tr>
+<tr>
+    <td>Pedro Alves Rocha</td>
+    <td class="func-tecnico">Técnico de Enfermagem</td>
+    <td>—</td>
+    <td>Noturno</td>
+    <td>19:00</td>
+    <td>01:00</td>
+</tr>
+<tr>
+    <td>Ana Paula Costa</td>
+    <td class="func-tecnico">Técnica de Enfermagem</td>
+    <td>—</td>
+    <td>Noturno</td>
+    <td>01:00</td>
+    <td>07:00</td>
+</tr>
+<tr>
+    <td>Lucas Ferreira Mendes</td>
+    <td class="func-tecnico">Técnico de Enfermagem</td>
+    <td>—</td>
+    <td>Diurno</td>
+    <td>07:00</td>
+    <td>19:00</td>
+</tr>
+
+<!-- ENFERMEIROS -->
+<tr>
+    <td>Enf. Juliana Ribeiro</td>
+    <td class="func-enfermeiro">Enfermeira</td>
+    <td>Coordenação</td>
+    <td>Diurno</td>
+    <td>07:00</td>
+    <td>19:00</td>
+</tr>
+<tr>
+    <td>Enf. Marcos Vinícius</td>
+    <td class="func-enfermeiro">Enfermeiro</td>
+    <td>Supervisão</td>
+    <td>Noturno</td>
+    <td>19:00</td>
+    <td>07:00</td>
+</tr>
+
+</tbody>
+</table>
+
+<footer>
+    Atualizado automaticamente — Painel Web de Plantões
+</footer>
+
+</body>
+</html>
