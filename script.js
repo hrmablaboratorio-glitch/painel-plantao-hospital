@@ -1,62 +1,61 @@
-const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTD3WXA_jwJMljuqVrk8U4UzqKkSRv5mDcov4f4idiw9EUB5KzUCdrFJLricaTNHgZltLh521gi4g1D/pub?output=csv";
+const sheetURL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTD3WXA_jwJMljuqVrk8U4UzqKkSRv5mDcov4f4idiw9EUB5KzUCdrFJLricaTNHgZltLh521gi4g1D/pub?output=csv";
 
-function estaNoHorario(inicio, fim) {
+/* ================= RELÓGIO DIGITAL ================= */
+function atualizarRelogio() {
   const agora = new Date();
-  const agoraMin = agora.getHours() * 60 + agora.getMinutes();
+  const h = String(agora.getHours()).padStart(2, "0");
+  const m = String(agora.getMinutes()).padStart(2, "0");
+  const s = String(agora.getSeconds()).padStart(2, "0");
+  document.getElementById("relogio").textContent = `${h}:${m}:${s}`;
+}
 
+setInterval(atualizarRelogio, 1000);
+atualizarRelogio();
+
+/* ================= PLANTÃO ATUAL ================= */
+function estaNoHorario(inicio, fim) {
+  if (!inicio || !fim) return false;
+
+  const agora = new Date();
   const [hi, mi] = inicio.split(":").map(Number);
   const [hf, mf] = fim.split(":").map(Number);
 
   const inicioMin = hi * 60 + mi;
   const fimMin = hf * 60 + mf;
+  const agoraMin = agora.getHours() * 60 + agora.getMinutes();
 
-  // turno normal
-  if (inicioMin <= fimMin) {
-    return agoraMin >= inicioMin && agoraMin <= fimMin;
-  }
-
-  // turno que vira a noite (ex: 19:00 → 07:00)
-  return agoraMin >= inicioMin || agoraMin <= fimMin;
+  return agoraMin >= inicioMin && agoraMin <= fimMin;
 }
 
+/* ================= CARREGAR ESCALA ================= */
 function carregarEscala() {
   fetch(sheetURL)
     .then(res => res.text())
     .then(csv => {
-      const linhas = csv.trim().split("\n");
-      const tbody = document.getElementById("escala-body");
+      const linhas = csv.split("\n").slice(1);
 
-      tbody.innerHTML = "";
+      const medicos = document.getElementById("medicos");
+      const anestesistas = document.getElementById("anestesistas");
+      const enfermeiros = document.getElementById("enfermeiros");
+      const tecnicos = document.getElementById("tecnicos");
 
-      linhas.slice(1).forEach(linha => {
+      medicos.innerHTML = "";
+      anestesistas.innerHTML = "";
+      enfermeiros.innerHTML = "";
+      tecnicos.innerHTML = "";
+
+      linhas.forEach(linha => {
         if (!linha.trim()) return;
 
-        // ✅ separador CORRETO do CSV
-        const col = linha.split(",");
-
-        if (col.length < 6) return;
+        const col = linha.split(";");
 
         const nome = col[0];
-        const cargo = col[1];
-        const especialidade = col[2];
+        const cargo = (col[1] || "").toLowerCase();
+        const especialidade = (col[2] || "").toLowerCase();
         const turno = col[3];
         const horaIni = col[4];
         const horaFim = col[5];
-
-        let classeCargo = "";
-
-        const cargoLower = cargo.toLowerCase();
-        const espLower = especialidade.toLowerCase();
-
-        if (cargoLower.includes("médico") && espLower.includes("anestes")) {
-          classeCargo = "func-anestesista";
-        } else if (cargoLower.includes("médico")) {
-          classeCargo = "func-medico";
-        } else if (cargoLower.includes("técnico")) {
-          classeCargo = "func-tecnico";
-        } else if (cargoLower.includes("enfermeiro")) {
-          classeCargo = "func-enfermeiro";
-        }
 
         const tr = document.createElement("tr");
 
@@ -66,31 +65,25 @@ function carregarEscala() {
 
         tr.innerHTML = `
           <td>${nome}</td>
-          <td class="${classeCargo}">${cargo}</td>
-          <td>${especialidade || "—"}</td>
-          <td>${turno}</td>
-          <td>${horaIni}</td>
-          <td>${horaFim}</td>
+          <td>${turno || "—"}</td>
+          <td>${horaIni || "—"}</td>
+          <td>${horaFim || "—"}</td>
         `;
 
-        tbody.appendChild(tr);
+        if (cargo.includes("médico") && especialidade.includes("anestes")) {
+          anestesistas.appendChild(tr);
+        } else if (cargo.includes("médico")) {
+          medicos.appendChild(tr);
+        } else if (cargo.includes("enfermeiro")) {
+          enfermeiros.appendChild(tr);
+        } else if (cargo.includes("técnico")) {
+          tecnicos.appendChild(tr);
+        }
       });
     })
     .catch(err => console.error("Erro ao carregar escala:", err));
 }
 
-// carrega ao abrir
+/* ================= ATUALIZAÇÃO ================= */
 carregarEscala();
-
-function atualizarRelogio() {
-  const agora = new Date();
-  const h = String(agora.getHours()).padStart(2, "0");
-  const m = String(agora.getMinutes()).padStart(2, "0");
-  const s = String(agora.getSeconds()).padStart(2, "0");
-
-  document.getElementById("relogio").textContent = `${h}:${m}:${s}`;
-}
-
-setInterval(atualizarRelogio, 1000);
-atualizarRelogio();
-
+setInterval(carregarEscala, 60000);
