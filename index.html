@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    
-<meta charset="UTF-8">
-<title>Escala de Plantões</title>
-<meta http-equiv="refresh" content="300">
-<link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8">
+  <title>Escala de Plantões</title>
+  <meta http-equiv="refresh" content="300">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -16,42 +14,86 @@
     <div id="relogio" class="relogio">00:00:00</div>
     <h1>ESCALA DE PLANTÕES</h1>
   </div>
-  <span>Hospital Regional Monsenhor Antônio Barros — SESAP/RN</span>
+  <span class="subtitulo">
+    Hospital Regional Monsenhor Antônio Barros — SESAP/RN
+  </span>
 </header>
 
 <div class="info">
-    <strong>Data:</strong> 14/12/2025 &nbsp;&nbsp; 
-    <strong>Unidade:</strong> Hospital Regional Monsenhor Antônio Barros
+  <strong>Data:</strong> 14/12/2025 &nbsp;&nbsp;
+  <strong>Unidade:</strong> Hospital Regional Monsenhor Antônio Barros
 </div>
 
-<table>
-<thead>
-<tr>
-    <th>Funcionário</th>
-    <th>Cargo</th>
-    <th>Especialidade</th>
-    <th>Plantão</th>
-    <th>Hora Inicial</th>
-    <th>Hora Final</th>
-</tr>
-</thead>
+<main class="quadros">
 
-    <tbody id="escala-body">
-    <!-- dados vêm do Google Sheets -->
-    </tbody>
+  <section class="quadro">
+    <h2>Médicos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Especialidade</th>
+          <th>Plantão</th>
+          <th>Início</th>
+          <th>Fim</th>
+        </tr>
+      </thead>
+      <tbody id="medicos"></tbody>
+    </table>
+  </section>
 
-</table>
+  <section class="quadro">
+    <h2>Anestesistas</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Plantão</th>
+          <th>Início</th>
+          <th>Fim</th>
+        </tr>
+      </thead>
+      <tbody id="anestesistas"></tbody>
+    </table>
+  </section>
+
+  <section class="quadro">
+    <h2>Enfermeiros</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Plantão</th>
+          <th>Início</th>
+          <th>Fim</th>
+        </tr>
+      </thead>
+      <tbody id="enfermeiros"></tbody>
+    </table>
+  </section>
+
+  <section class="quadro">
+    <h2>Técnicos de Enfermagem</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Plantão</th>
+          <th>Início</th>
+          <th>Fim</th>
+        </tr>
+      </thead>
+      <tbody id="tecnicos"></tbody>
+    </table>
+  </section>
+
+</main>
 
 <footer>
-    Atualizado automaticamente — Painel Web de Plantões
+  Atualizado automaticamente — Painel Web de Plantões
 </footer>
+
 <script src="script.js"></script>
+
 </body>
-
 </html>
-
-
-
-
-
-
