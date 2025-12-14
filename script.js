@@ -82,4 +82,15 @@ function carregarEscala() {
 // carrega ao abrir
 carregarEscala();
 
-// atualiz
+function atualizarRelogio() {
+  const agora = new Date();
+  const h = String(agora.getHours()).padStart(2, "0");
+  const m = String(agora.getMinutes()).padStart(2, "0");
+  const s = String(agora.getSeconds()).padStart(2, "0");
+
+  document.getElementById("relogio").textContent = `${h}:${m}:${s}`;
+}
+
+setInterval(atualizarRelogio, 1000);
+atualizarRelogio();
+
