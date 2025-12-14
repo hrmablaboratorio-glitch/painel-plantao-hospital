@@ -1,4 +1,4 @@
-const SHEET_URL = "COLE_AQUI_O_LINK_DO_CSV";
+const SHEET_URL = https://docs.google.com/spreadsheets/d/e/2PACX-1vTD3WXA_jwJMljuqVrk8U4UzqKkSRv5mDcov4f4idiw9EUB5KzUCdrFJLricaTNHgZltLh521gi4g1D/pubhtml;
 
 function carregarDados() {
   fetch(SHEET_URL)
