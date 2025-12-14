@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Escala de Plantões</title>
-  <meta http-equiv="refresh" content="300">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Escala de Plantões</title>
+<meta http-equiv="refresh" content="300">
+
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -14,24 +15,22 @@
     <div id="relogio" class="relogio">00:00:00</div>
     <h1>ESCALA DE PLANTÕES</h1>
   </div>
-  <span class="subtitulo">
-    Hospital Regional Monsenhor Antônio Barros — SESAP/RN
-  </span>
+  <span>Hospital Regional Monsenhor Antônio Barros — SESAP/RN</span>
 </header>
 
 <div class="info">
-  <strong>Data:</strong> 14/12/2025 &nbsp;&nbsp;
+  <strong>Data:</strong> <span id="data-atual"></span> &nbsp;&nbsp;
   <strong>Unidade:</strong> Hospital Regional Monsenhor Antônio Barros
 </div>
 
-<main class="quadros">
+<div class="quadros">
 
-  <section class="quadro">
+  <section>
     <h2>Médicos</h2>
     <table>
       <thead>
         <tr>
-          <th>Nome</th>
+          <th>Funcionário</th>
           <th>Especialidade</th>
           <th>Plantão</th>
           <th>Início</th>
@@ -42,12 +41,13 @@
     </table>
   </section>
 
-  <section class="quadro">
+  <section>
     <h2>Anestesistas</h2>
     <table>
       <thead>
         <tr>
-          <th>Nome</th>
+          <th>Funcionário</th>
+          <th>Especialidade</th>
           <th>Plantão</th>
           <th>Início</th>
           <th>Fim</th>
@@ -57,12 +57,13 @@
     </table>
   </section>
 
-  <section class="quadro">
+  <section>
     <h2>Enfermeiros</h2>
     <table>
       <thead>
         <tr>
-          <th>Nome</th>
+          <th>Funcionário</th>
+          <th>Especialidade</th>
           <th>Plantão</th>
           <th>Início</th>
           <th>Fim</th>
@@ -72,12 +73,12 @@
     </table>
   </section>
 
-  <section class="quadro">
+  <section>
     <h2>Técnicos de Enfermagem</h2>
     <table>
       <thead>
         <tr>
-          <th>Nome</th>
+          <th>Funcionário</th>
           <th>Plantão</th>
           <th>Início</th>
           <th>Fim</th>
@@ -87,13 +88,12 @@
     </table>
   </section>
 
-</main>
+</div>
 
 <footer>
   Atualizado automaticamente — Painel Web de Plantões
 </footer>
 
 <script src="script.js"></script>
-
 </body>
 </html>
