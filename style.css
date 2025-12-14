@@ -133,3 +133,27 @@ tr:nth-child(even) {
   background: #dcfce7 !important;
   border-left: 6px solid #16a34a;
 }
+.topo {
+  background: linear-gradient(to right, #0a5aa3, #0d7acb);
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topo-esquerda {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.relogio {
+  font-size: 26px;
+  font-weight: bold;
+  font-family: "Courier New", monospace;
+  background: rgba(0,0,0,0.25);
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
