@@ -11,7 +11,8 @@ fetch(sheetURL)
     linhas.slice(1).forEach(linha => {
       if (!linha.trim()) return;
 
-      const col = linha.split(",");
+      // 🔴 separador correto do CSV brasileiro
+      const col = linha.split(";");
 
       const nome = col[0];
       const cargo = col[1];
@@ -22,13 +23,16 @@ fetch(sheetURL)
 
       let classeCargo = "";
 
-      if (cargo.toLowerCase().includes("médico") && especialidade.toLowerCase().includes("anestes")) {
+      if (
+        cargo?.toLowerCase().includes("médico") &&
+        especialidade?.toLowerCase().includes("anestes")
+      ) {
         classeCargo = "func-anestesista";
-      } else if (cargo.toLowerCase().includes("médico")) {
+      } else if (cargo?.toLowerCase().includes("médico")) {
         classeCargo = "func-medico";
-      } else if (cargo.toLowerCase().includes("técnico")) {
+      } else if (cargo?.toLowerCase().includes("técnico")) {
         classeCargo = "func-tecnico";
-      } else if (cargo.toLowerCase().includes("enfermeiro")) {
+      } else if (cargo?.toLowerCase().includes("enfermeiro")) {
         classeCargo = "func-enfermeiro";
       }
 
