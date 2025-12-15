@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <title>Escala de Plantões</title>
 <meta http-equiv="refresh" content="300">
-
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,83 +11,33 @@
 
 <header class="topo">
   <div class="topo-esquerda">
-    <div id="relogio" class="relogio">00:00:00</div>
     <h1>ESCALA DE PLANTÕES</h1>
+    <div id="relogio" class="relogio">00:00:00</div>
   </div>
-  <span>Hospital Regional Monsenhor Antônio Barros — SESAP/RN</span>
+  <span>Hospital Regional — SESAP/RN</span>
 </header>
 
 <div class="info">
-  <strong>Data:</strong> <span id="data-atual"></span> &nbsp;&nbsp;
   <strong>Unidade:</strong> Hospital Regional Monsenhor Antônio Barros
 </div>
 
-<div class="quadros">
+<main>
+  <table>
+    <thead>
+      <tr>
+        <th>Funcionário</th>
+        <th>Cargo</th>
+        <th>Especialidade</th>
+        <th>Plantão</th>
+        <th>Hora Inicial</th>
+        <th>Hora Final</th>
+      </tr>
+    </thead>
 
-  <section>
-    <h2>Médicos</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Funcionário</th>
-          <th>Especialidade</th>
-          <th>Plantão</th>
-          <th>Início</th>
-          <th>Fim</th>
-        </tr>
-      </thead>
-      <tbody id="medicos"></tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>Anestesistas</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Funcionário</th>
-          <th>Especialidade</th>
-          <th>Plantão</th>
-          <th>Início</th>
-          <th>Fim</th>
-        </tr>
-      </thead>
-      <tbody id="anestesistas"></tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>Enfermeiros</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Funcionário</th>
-          <th>Especialidade</th>
-          <th>Plantão</th>
-          <th>Início</th>
-          <th>Fim</th>
-        </tr>
-      </thead>
-      <tbody id="enfermeiros"></tbody>
-    </table>
-  </section>
-
-  <section>
-    <h2>Técnicos de Enfermagem</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Funcionário</th>
-          <th>Plantão</th>
-          <th>Início</th>
-          <th>Fim</th>
-        </tr>
-      </thead>
-      <tbody id="tecnicos"></tbody>
-    </table>
-  </section>
-
-</div>
+    <!-- 🔴 ID OBRIGATÓRIO -->
+    <tbody id="escala-body"></tbody>
+  </table>
+</main>
 
 <footer>
   Atualizado automaticamente — Painel Web de Plantões
