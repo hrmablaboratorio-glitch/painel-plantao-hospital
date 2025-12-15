@@ -1,5 +1,4 @@
-const sheetURL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vTD3WXA_jwJMljuqVrk8U4UzqKkSRv5mDcov4f4idiw9EUB5KzUCdrFJLricaTNHgZltLh521gi4g1D/pub?output=csv";
+const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTD3WXA_jwJMljuqVrk8U4UzqKkSRv5mDcov4f4idiw9EUB5KzUCdrFJLricaTNHgZltLh521gi4g1D/pub?output=csv";
 
 /* ================= RELÓGIO ================= */
 function atualizarRelogio() {
@@ -12,12 +11,7 @@ function atualizarRelogio() {
 setInterval(atualizarRelogio, 1000);
 atualizarRelogio();
 
-/* ================= DATA ================= */
-const hoje = new Date();
-document.getElementById("data-atual").textContent =
-  hoje.toLocaleDateString("pt-BR");
-
-/* ================= HORÁRIO ================= */
+/* =============== HORÁRIO ATUAL =============== */
 function estaNoHorario(inicio, fim) {
   const agora = new Date();
   const agoraMin = agora.getHours() * 60 + agora.getMinutes();
@@ -34,95 +28,59 @@ function estaNoHorario(inicio, fim) {
   return agoraMin >= inicioMin || agoraMin <= fimMin;
 }
 
-/* ================= ESCALA ================= */
+/* ================== CARGA ================== */
 function carregarEscala() {
   fetch(sheetURL)
     .then(res => res.text())
     .then(csv => {
       const linhas = csv.trim().split("\n");
 
-      // limpa quadros
-      document.getElementById("medicos").innerHTML = "";
-      document.getElementById("anestesistas").innerHTML = "";
-      document.getElementById("enfermeiros").innerHTML = "";
-      document.getElementById("tecnicos").innerHTML = "";
+      const tbody = document.getElementById("escala-body");
+      tbody.innerHTML = "";
 
       linhas.slice(1).forEach(linha => {
         if (!linha.trim()) return;
 
-        // 🔴 separador correto
-        const col = linha.split(";");
+        // 🔴 separador correto (PT-BR)
+        const col = linha.split(";").map(c => c.replace(/"/g, "").trim());
 
         if (col.length < 6) return;
 
-        const nome = col[0];
-        const cargo = col[1];
-        const especialidade = col[2];
-        const turno = col[3];
-        const horaIni = col[4];
-        const horaFim = col[5];
+        const [nome, cargo, especialidade, turno, horaIni, horaFim] = col;
 
+        let classeCargo = "";
         const cargoLower = cargo.toLowerCase();
         const espLower = especialidade.toLowerCase();
+
+        if (cargoLower.includes("médico") && espLower.includes("anestes")) {
+          classeCargo = "func-anestesista";
+        } else if (cargoLower.includes("médico")) {
+          classeCargo = "func-medico";
+        } else if (cargoLower.includes("enfermeiro")) {
+          classeCargo = "func-enfermeiro";
+        } else if (cargoLower.includes("técnico")) {
+          classeCargo = "func-tecnico";
+        }
 
         const tr = document.createElement("tr");
 
         if (estaNoHorario(horaIni, horaFim)) {
-          tr.style.backgroundColor = "#dff0d8"; // destaque plantão atual
+          tr.classList.add("plantao-atual");
         }
 
-        /* ====== MÉDICOS ====== */
-        if (cargoLower.includes("médico") && !espLower.includes("anestes")) {
-          tr.innerHTML = `
-            <td class="func-medico">${nome}</td>
-            <td>${especialidade}</td>
-            <td>${turno}</td>
-            <td>${horaIni}</td>
-            <td>${horaFim}</td>
-          `;
-          document.getElementById("medicos").appendChild(tr);
-        }
+        tr.innerHTML = `
+          <td>${nome}</td>
+          <td class="${classeCargo}">${cargo}</td>
+          <td>${especialidade || "—"}</td>
+          <td>${turno}</td>
+          <td>${horaIni}</td>
+          <td>${horaFim}</td>
+        `;
 
-        /* ====== ANESTESISTAS ====== */
-        else if (cargoLower.includes("médico") && espLower.includes("anestes")) {
-          tr.innerHTML = `
-            <td class="func-anestesista">${nome}</td>
-            <td>${especialidade}</td>
-            <td>${turno}</td>
-            <td>${horaIni}</td>
-            <td>${horaFim}</td>
-          `;
-          document.getElementById("anestesistas").appendChild(tr);
-        }
-
-        /* ====== ENFERMEIROS ====== */
-        else if (cargoLower.includes("enfermeiro")) {
-          tr.innerHTML = `
-            <td class="func-enfermeiro">${nome}</td>
-            <td>${especialidade || "—"}</td>
-            <td>${turno}</td>
-            <td>${horaIni}</td>
-            <td>${horaFim}</td>
-          `;
-          document.getElementById("enfermeiros").appendChild(tr);
-        }
-
-        /* ====== TÉCNICOS ====== */
-        else if (cargoLower.includes("técnico")) {
-          tr.innerHTML = `
-            <td class="func-tecnico">${nome}</td>
-            <td>${turno}</td>
-            <td>${horaIni}</td>
-            <td>${horaFim}</td>
-          `;
-          document.getElementById("tecnicos").appendChild(tr);
-        }
+        tbody.appendChild(tr);
       });
     })
     .catch(err => console.error("Erro ao carregar escala:", err));
 }
 
-/* inicial + atualização */
 carregarEscala();
-setInterval(carregarEscala, 60000);
-
